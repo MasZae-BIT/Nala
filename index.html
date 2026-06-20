@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Dokumentasi Teknis Nalarku.ai</title>
+<style>
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  html, body { margin: 0; padding: 0; width: 100%; }
+  .page-content {
+    padding: 2.2cm 2cm 2.4cm 2cm;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #1f2430;
+    font-size: 11pt;
+    line-height: 1.55;
+  }
+  h1, h2, h3, h4 { font-family: 'Georgia', 'Times New Roman', serif; color: #14202e; }
+  .cover {
+    width: 100%;
+    height: 1455px;
+    margin: 0;
+    padding: 2cm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    page-break-after: always;
+    background: linear-gradient(180deg, #0B0E14 0%, #14181F 100%);
+    color: #F5F1E8;
+    overflow: hidden;
+  }
+  .cover .kicker {
+    letter-spacing: 4px;
+    font-size: 11pt;
+    color: #D97706;
+    font-weight: bold;
+    margin-bottom: 18px;
+  }
+  .cover h1 {
+    color: #F5F1E8;
+    font-size: 38pt;
+    margin: 0 0 6px 0;
+    font-family: Georgia, serif;
+  }
+  .cover h2 {
+    color: #C9C2B4;
+    font-weight: normal;
+    font-size: 15pt;
+    margin-top: 4px;
+    max-width: 14cm;
+  }
+  .cover .meta {
+    margin-top: 60px;
+    font-size: 10.5pt;
+    color: #9C9385;
+    border-top: 1px solid #3a3530;
+    padding-top: 18px;
+    width: 10cm;
+  }
+  .cover .meta div { margin: 4px 0; }
+  .toc {
+    page-break-after: always;
+  }
+  .toc h1 { font-size: 22pt; border-bottom: 2px solid #D97706; padding-bottom: 8px; }
+  .toc-item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dotted #c8c2b6;
+    padding: 6px 0;
+    font-size: 11pt;
+  }
+  .toc-item.sub { padding-left: 20px; color: #555; font-size: 10pt; }
+  section { page-break-before: always; }
+  section:first-of-type { page-break-before: avoid; }
+  h1.chapter {
+    font-size: 22pt;
+    color: #14202e;
+    border-bottom: 3px solid #D97706;
+    padding-bottom: 10px;
+    margin-bottom: 6px;
+  }
+  .chapter-num {
+    color: #D97706;
+    font-weight: bold;
+    font-size: 12pt;
+    letter-spacing: 2px;
+    font-family: Arial, sans-serif;
+  }
+  h2 {
+    font-size: 15pt;
+    margin-top: 28px;
+    color: #14202e;
+    border-left: 4px solid #D97706;
+    padding-left: 10px;
+  }
+  h3 {
+    font-size: 12.5pt;
+    margin-top: 20px;
+    color: #2b3442;
+  }
+  p { text-align: justify; margin: 10px 0; }
+  ul, ol { margin: 8px 0; padding-left: 22px; }
+  li { margin: 5px 0; text-align: justify; }
+  .callout {
+    background: #FFF7E8;
+    border-left: 4px solid #D97706;
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin: 16px 0;
+    font-size: 10.3pt;
+  }
+  .callout-title {
+    font-weight: bold;
+    color: #92400E;
+    margin-bottom: 4px;
+    font-family: Arial, sans-serif;
+    font-size: 10pt;
+    letter-spacing: 0.5px;
+  }
+  .analogy {
+    background: #F0F4F8;
+    border-left: 4px solid #475569;
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin: 16px 0;
+    font-size: 10.3pt;
+    font-style: italic;
+  }
+  .analogy .analogy-title {
+    font-weight: bold;
+    font-style: normal;
+    color: #334155;
+    margin-bottom: 4px;
+    font-family: Arial, sans-serif;
+    font-size: 10pt;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 10pt;
+  }
+  th {
+    background: #14202e;
+    color: #F5F1E8;
+    text-align: left;
+    padding: 7px 10px;
+    font-family: Arial, sans-serif;
+  }
+  td {
+    border-bottom: 1px solid #ddd;
+    padding: 7px 10px;
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: #FAFAF8; }
+  code {
+    font-family: 'Courier New', monospace;
+    background: #EEF1F5;
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 9.5pt;
+    color: #B91C1C;
+  }
+  pre {
+    background: #14181F;
+    color: #E5E0D5;
+    padding: 14px 16px;
+    border-radius: 6px;
+    font-size: 9pt;
+    line-height: 1.5;
+    overflow-x: auto;
+    margin: 14px 0;
+    font-family: 'Courier New', monospace;
+    page-break-inside: avoid;
+  }
+  pre .c1 { color: #6B9DC9; }
+  pre .s1 { color: #C9A86B; }
+  pre .k1 { color: #D97706; }
+  .figure {
+    margin: 18px 0;
+    text-align: center;
+    page-break-inside: avoid;
+  }
+  .figure img { width: 100%; max-width: 16cm; }
+  .figure-caption {
+    font-size: 9.5pt;
+    color: #555;
+    margin-top: 6px;
+    font-style: italic;
+  }
+  .two-col {
+    display: flex;
+    gap: 16px;
+  }
+  .two-col > div { flex: 1; }
+  .step-box {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-left: 4px solid #14202e;
+    border-radius: 4px;
+    padding: 10px 14px;
+    margin: 10px 0;
+  }
+  .step-box .step-num {
+    display: inline-block;
+    background: #D97706;
+    color: white;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 10pt;
+    font-weight: bold;
+    margin-right: 8px;
+    font-family: Arial, sans-serif;
+  }
+  .script-box {
+    background: #14181F;
+    color: #E5E0D5;
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 14px 0;
+    page-break-inside: avoid;
+  }
+  .script-box .speaker {
+    color: #D97706;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    font-size: 9.5pt;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .script-box p { color: #E5E0D5; margin: 6px 0; }
+  .qa-box {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin: 12px 0;
+  }
+  .qa-box .q {
+    font-weight: bold;
+    color: #14202e;
+    margin-bottom: 4px;
+  }
+  .qa-box .a { color: #333; }
+  .footer-note {
+    font-size: 9pt;
+    color: #888;
+    text-align: center;
+    margin-top: 40px;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+  }
+  .badge {
+    display: inline-block;
+    background: #14202e;
+    color: #D97706;
+    font-size: 8.5pt;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    margin-right: 4px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== COVER ===================== -->
+<div class="cover">
+  <div class="kicker">DOKUMENTASI TEKNIS &amp; PROPOSAL AKADEMIK</div>
+  <h1>Nalarku.ai</h1>
+  <h2>Arsitektur Sistem AI, Integrasi Application Programming Interface (API), dan Strategi Presentasi Sidang</h2>
+  <div class="meta">
+    <div><strong>Proyek:</strong> Nalarku.ai — Platform Belajar Berbasis AI dengan Asisten "Nala AI"</div>
+    <div><strong>Disusun oleh:</strong> Hamba Allah</div>
+    <div><strong>Institusi:</strong> IPB University</div>
+    <div><strong>Tanggal:</strong> 20 Juni 2026</div>
+  </div>
+</div>
+
+<div class="page-content">
+
+<!-- ===================== DAFTAR ISI ===================== -->
+<div class="toc">
+  <h1>Daftar Isi</h1>
+  <div class="toc-item"><span>1. Pendahuluan &amp; Latar Belakang Proyek</span><span>3</span></div>
+  <div class="toc-item"><span>2. Apa Itu API? Konsep Dasar dari Nol</span><span>4</span></div>
+  <div class="toc-item sub">2.1 Definisi dan Analogi Sehari-hari</div>
+  <div class="toc-item sub">2.2 Cara Kerja API Berbasis HTTP/REST</div>
+  <div class="toc-item sub">2.3 Anatomi Request dan Response</div>
+  <div class="toc-item"><span>3. API dalam Konteks Kecerdasan Buatan (LLM API)</span><span>6</span></div>
+  <div class="toc-item sub">3.1 Apa yang Dimaksud "Model Bahasa Besar" (LLM)</div>
+  <div class="toc-item sub">3.2 Token, Context Window, dan System Prompt</div>
+  <div class="toc-item sub">3.3 Mengapa Nalarku.ai Tidak Membangun Server AI Sendiri</div>
+  <div class="toc-item"><span>4. Arsitektur Sistem Nalarku.ai</span><span>8</span></div>
+  <div class="toc-item sub">4.1 Diagram Arsitektur End-to-End</div>
+  <div class="toc-item sub">4.2 Strategi Multi-Provider (Pendekatan Campuran)</div>
+  <div class="toc-item sub">4.3 Lapisan Persona "Nala AI"</div>
+  <div class="toc-item"><span>5. Apa yang Terjadi di Balik Layar Saat Pengguna Bertanya</span><span>10</span></div>
+  <div class="toc-item sub">5.1 Diagram Alur Permintaan (Sequence Flow)</div>
+  <div class="toc-item sub">5.2 Penjelasan Tahap demi Tahap</div>
+  <div class="toc-item"><span>6. Implementasi Teknis &amp; Contoh Kode</span><span>12</span></div>
+  <div class="toc-item sub">6.1 Contoh Request API</div>
+  <div class="toc-item sub">6.2 Desain System Prompt untuk Nala AI</div>
+  <div class="toc-item sub">6.3 Penanganan Kegagalan (Fallback)</div>
+  <div class="toc-item"><span>7. Pertimbangan Keamanan, Biaya, dan Skalabilitas</span><span>14</span></div>
+  <div class="toc-item"><span>8. Skrip Presentasi Sidang</span><span>16</span></div>
+  <div class="toc-item sub">8.1 Pembukaan</div>
+  <div class="toc-item sub">8.2 Penjelasan Konsep API</div>
+  <div class="toc-item sub">8.3 Penjelasan Arsitektur Sistem</div>
+  <div class="toc-item sub">8.4 Antisipasi Pertanyaan Dosen Penguji</div>
+  <div class="toc-item sub">8.5 Penutup</div>
+  <div class="toc-item"><span>9. Kesimpulan</span><span>21</span></div>
+  <div class="toc-item"><span>10. Referensi</span><span>22</span></div>
+</div>
+
+<!-- ===================== BAB 1 ===================== -->
+<section>
+<div class="chapter-num">BAB 1</div>
+<h1 class="chapter">Pendahuluan &amp; Latar Belakang Proyek</h1>
+
+<p>Nalarku.ai adalah platform belajar berbasis web yang dikembangkan secara mandiri, dirancang agar proses belajar mandiri menjadi lebih personal, interaktif, dan terukur. Berbeda dari platform belajar konvensional yang bersifat statis (materi tetap, soal tetap), Nalarku.ai dilengkapi dengan asisten kecerdasan buatan bernama <strong>Nala AI</strong> yang dapat berinteraksi langsung dengan pengguna, menjawab pertanyaan, membuatkan soal latihan, memberi umpan balik, serta mengakses berbagai fitur pendukung belajar seperti Pomodoro timer, sistem gamifikasi (XP dan leaderboard), dan plagiarism checker.</p>
+
+<p>Karakteristik utama yang membedakan Nalarku.ai dari sekadar "aplikasi belajar dengan chatbot" adalah kemampuan Nala AI untuk <strong>mengakses tools</strong> — artinya AI tidak hanya menjawab dengan teks, tetapi dapat memicu fungsi-fungsi lain dalam sistem (memulai sesi Pomodoro, menghasilkan kuis baru, memeriksa originalitas tulisan pengguna) dan menyesuaikan responsnya berdasarkan riwayat dan progres belajar tiap pengguna secara personal.</p>
+
+<h2>1.1 Permasalahan yang Dijawab</h2>
+<p>Pembangunan kecerdasan buatan dari nol — termasuk melatih model bahasa besar (Large Language Model/LLM) sendiri — membutuhkan sumber daya komputasi, data, dan biaya yang sangat besar, jauh di luar jangkauan proyek mahasiswa maupun startup tahap awal. Oleh karena itu, Nalarku.ai mengambil pendekatan yang lazim digunakan industri: <strong>tidak membangun model AI sendiri, melainkan mengakses kecerdasan AI melalui Application Programming Interface (API)</strong> milik penyedia model pihak ketiga.</p>
+
+<div class="callout">
+  <div class="callout-title">MENGAPA INI PENTING DIPRESENTASIKAN</div>
+  Dosen penguji kemungkinan akan menanyakan: "Jadi AI-nya buatan kalian sendiri atau bukan?" Dokumen ini secara eksplisit menjelaskan bahwa kecerdasan inti (model bahasa) berasal dari penyedia API pihak ketiga, sementara <strong>nilai tambah dan orisinalitas proyek terletak pada arsitektur sistem, desain interaksi, personalisasi, integrasi tools, dan pengalaman belajar</strong> yang dibangun di atasnya — bukan pada pembuatan model AI itu sendiri. Kejujuran teknis ini justru memperkuat kredibilitas, karena membangun model sendiri di luar skema akademik bukanlah hal yang realistis maupun diharapkan pada level ini.
+</div>
+
+<h2>1.2 Tujuan Dokumen</h2>
+<p>Dokumen ini disusun untuk tiga tujuan:</p>
+<ol>
+  <li>Menjelaskan secara teknis dan mendalam apa itu API, bagaimana cara kerjanya, dan secara khusus bagaimana API model AI bekerja — mulai dari konsep paling dasar hingga detail arsitektur.</li>
+  <li>Mendokumentasikan arsitektur sistem Nalarku.ai secara menyeluruh, termasuk strategi penggunaan beberapa penyedia API (multi-provider/campuran) dan alasan di baliknya.</li>
+  <li>Menyediakan skrip dan strategi presentasi yang dapat langsung digunakan tim dalam sidang atau presentasi proposal akademik, lengkap dengan antisipasi pertanyaan penguji.</li>
+</ol>
+
+</section>
+
+<!-- ===================== BAB 2 ===================== -->
+<section>
+<div class="chapter-num">BAB 2</div>
+<h1 class="chapter">Apa Itu API? Konsep Dasar dari Nol</h1>
+
+<h2>2.1 Definisi dan Analogi Sehari-hari</h2>
+<p><strong>API (Application Programming Interface)</strong> adalah seperangkat aturan dan mekanisme yang memungkinkan satu program perangkat lunak berkomunikasi dan meminta layanan dari program perangkat lunak lain, tanpa kedua program tersebut perlu mengetahui detail internal satu sama lain. API mendefinisikan <em>apa</em> yang bisa diminta, <em>bagaimana</em> cara memintanya, dan <em>dalam format apa</em> jawabannya akan diberikan.</p>
+
+<div class="analogy">
+  <div class="analogy-title">ANALOGI: API SEBAGAI PRAMUSAJI RESTORAN</div>
+  Bayangkan sebuah restoran. Dapur (sistem internal) memiliki resep dan proses memasak yang rumit, dan pelanggan (aplikasi yang meminta) tidak perlu — dan tidak boleh — masuk ke dapur untuk mengambil makanan sendiri. Sebagai gantinya, ada pramusaji (API) yang menerima pesanan dalam format tertentu (menu), meneruskannya ke dapur, lalu mengembalikan hasilnya ke meja pelanggan. Pelanggan tidak perlu tahu bagaimana cara memasak nasi goreng; ia cukup tahu cara memesannya lewat pramusaji. API bekerja dengan prinsip yang sama: ia menyembunyikan kerumitan internal sistem, dan hanya mengekspos "menu" — daftar permintaan yang diizinkan beserta formatnya.
+</div>
+
+<p>Dalam konteks perangkat lunak modern, ketika dua sistem berbeda — katakanlah aplikasi web Nalarku.ai dan server penyedia model AI — perlu saling berkomunikasi melalui internet, mekanisme paling umum yang digunakan adalah <strong>Web API berbasis HTTP</strong>, sering disebut juga <strong>REST API</strong> (Representational State Transfer).</p>
+
+<h2>2.2 Cara Kerja API Berbasis HTTP/REST</h2>
+<p>HTTP (HyperText Transfer Protocol) adalah protokol komunikasi yang sama dengan yang digunakan browser untuk membuka halaman web. Saat sebuah aplikasi memanggil API, pada dasarnya ia mengirim pesan terstruktur ke sebuah alamat (URL/endpoint) di server, dan server membalas dengan pesan terstruktur lain.</p>
+
+<table>
+  <tr><th>Komponen</th><th>Penjelasan</th><th>Contoh dalam Nalarku.ai</th></tr>
+  <tr><td><strong>Endpoint</strong></td><td>Alamat URL spesifik yang menjadi tujuan permintaan</td><td><code>https://api.provider.com/v1/messages</code></td></tr>
+  <tr><td><strong>Method</strong></td><td>Jenis aksi yang diminta (GET = ambil data, POST = kirim/buat data, dst.)</td><td><code>POST</code> — mengirim pertanyaan pengguna</td></tr>
+  <tr><td><strong>Header</strong></td><td>Metadata permintaan, termasuk otentikasi (API key) dan format data</td><td><code>Authorization: Bearer sk-xxxx</code></td></tr>
+  <tr><td><strong>Body</strong></td><td>Isi data yang dikirim, biasanya dalam format JSON</td><td><code>{"message": "Jelaskan stratifikasi sosial"}</code></td></tr>
+  <tr><td><strong>Response</strong></td><td>Balasan dari server, juga umumnya JSON</td><td><code>{"answer": "Stratifikasi sosial adalah..."}</code></td></tr>
+  <tr><td><strong>Status Code</strong></td><td>Kode tiga digit penanda hasil permintaan</td><td><code>200 OK</code>, <code>401 Unauthorized</code>, <code>429 Too Many Requests</code></td></tr>
+</table>
+
+<h2>2.3 Anatomi Request dan Response</h2>
+<p>Berikut contoh sederhana bentuk permintaan (request) dan balasan (response) API secara umum, dalam format JSON yang menjadi standar de facto pertukaran data API modern:</p>
+
+<pre><span class="c1">// Contoh REQUEST yang dikirim aplikasi ke API</span>
+POST /v1/messages HTTP/1.1
+Host: api.contohprovider.com
+Content-Type: application/json
+Authorization: Bearer &lt;API_KEY&gt;
+
+{
+  <span class="k1">"model"</span>: <span class="s1">"nama-model-tertentu"</span>,
+  <span class="k1">"messages"</span>: [
+    { <span class="k1">"role"</span>: <span class="s1">"user"</span>, <span class="k1">"content"</span>: <span class="s1">"Apa itu fotosintesis?"</span> }
+  ],
+  <span class="k1">"max_tokens"</span>: 500
+}</pre>
+
+<pre><span class="c1">// Contoh RESPONSE yang dikembalikan API</span>
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  <span class="k1">"id"</span>: <span class="s1">"msg_01abcXYZ"</span>,
+  <span class="k1">"content"</span>: [
+    { <span class="k1">"type"</span>: <span class="s1">"text"</span>, <span class="k1">"text"</span>: <span class="s1">"Fotosintesis adalah proses..."</span> }
+  ],
+  <span class="k1">"usage"</span>: { <span class="k1">"input_tokens"</span>: 12, <span class="k1">"output_tokens"</span>: 86 }
+}</pre>
+
+<div class="callout">
+  <div class="callout-title">ISTILAH KUNCI: API KEY</div>
+  API key adalah "kunci akses" unik berupa untaian karakter acak yang membuktikan identitas pemanggil API kepada penyedia layanan. Setiap permintaan ke API model AI wajib menyertakan API key di header, sehingga penyedia tahu siapa yang meminta, dapat menagih biaya penggunaan, dan dapat membatasi penyalahgunaan. API key harus diperlakukan seperti kata sandi — tidak boleh ditaruh di kode frontend yang bisa dilihat publik, melainkan hanya disimpan dan digunakan di sisi backend/server.
+</div>
+
+</section>
+
+<!-- ===================== BAB 3 ===================== -->
+<section>
+<div class="chapter-num">BAB 3</div>
+<h1 class="chapter">API dalam Konteks Kecerdasan Buatan (LLM API)</h1>
+
+<h2>3.1 Apa yang Dimaksud "Model Bahasa Besar" (LLM)</h2>
+<p><strong>Large Language Model (LLM)</strong> adalah model statistik berskala sangat besar yang dilatih menggunakan miliaran hingga triliunan kata teks, sehingga mampu memprediksi dan menghasilkan teks yang koheren, relevan, dan tampak "memahami" bahasa manusia. Model seperti inilah yang menjadi otak di balik kemampuan Nala AI menjawab pertanyaan, menjelaskan konsep, atau membuat soal kuis.</p>
+
+<p>Yang membuat model ini sulit dan mahal untuk dibangun sendiri bukan algoritmanya yang rahasia, melainkan <strong>skala sumber daya</strong> yang dibutuhkan: ribuan unit pemroses grafis (GPU) kelas server yang berjalan selama berminggu-minggu hingga berbulan-bulan, dataset teks berskala internet yang telah dibersihkan dan dikurasi, serta tim peneliti khusus untuk proses <em>fine-tuning</em> dan keselamatan model. Inilah alasan mendasar mengapa hampir seluruh aplikasi AI di dunia — termasuk milik perusahaan besar sekalipun — memilih <strong>mengakses model lewat API</strong>, bukan melatih model sendiri.</p>
+
+<h2>3.2 Token, Context Window, dan System Prompt</h2>
+<p>Tiga istilah berikut adalah konsep yang akan sangat sering muncul saat menjelaskan API AI ke penguji, sehingga penting dipahami secara presisi:</p>
+
+<h3>a. Token</h3>
+<p>Model tidak membaca teks per huruf atau per kata utuh, melainkan memecahnya menjadi unit-unit kecil yang disebut <strong>token</strong> — bisa berupa satu kata pendek, sebagian kata, atau tanda baca. Sebagai gambaran kasar, satu token kurang lebih setara 4 karakter dalam bahasa Inggris, sedikit lebih banyak untuk Bahasa Indonesia. Penyedia API hampir selalu menagih biaya berdasarkan jumlah token yang digunakan, baik token masukan (<em>input</em>) maupun token keluaran (<em>output</em>).</p>
+
+<h3>b. Context Window</h3>
+<p>Context window adalah batas maksimum jumlah token (gabungan input dan output) yang dapat diproses model dalam satu kali permintaan. Ini penting bagi Nalarku.ai karena menentukan seberapa banyak riwayat percakapan atau materi belajar yang bisa "diingat" Nala AI dalam satu sesi — di luar batas tersebut, bagian percakapan terlama harus dipangkas atau diringkas oleh backend sebelum dikirim ulang ke API.</p>
+
+<h3>c. System Prompt</h3>
+<p>System prompt adalah instruksi tersembunyi yang disisipkan backend di awal setiap permintaan, tidak terlihat oleh pengguna, yang mengatur bagaimana model harus berperilaku — gaya bahasa, batasan topik, persona, hingga format jawaban. <strong>Inilah mekanisme utama yang membuat "Nala AI" terasa seperti karakter yang konsisten</strong>, padahal di baliknya adalah model generik yang sama yang diberi instruksi berbeda.</p>
+
+<div class="analogy">
+  <div class="analogy-title">ANALOGI: SYSTEM PROMPT SEPERTI SKRIP UNTUK AKTOR</div>
+  Bayangkan seorang aktor profesional yang bisa memerankan tokoh apa pun selama diberi skrip dan arahan sutradara. Model AI di balik Nala AI pada dasarnya adalah "aktor" generik yang sama dengan yang dipakai ribuan aplikasi lain. System prompt adalah skrip dan arahan sutradara yang membuatnya tampil sebagai "Nala AI" — ramah, fokus pada konteks belajar, menggunakan gamifikasi — alih-alih sekadar asisten generik tanpa karakter.
+</div>
+
+<h2>3.3 Mengapa Nalarku.ai Tidak Membangun Server AI Sendiri</h2>
+<p>Tabel berikut merangkum perbandingan dua pendekatan, sebagai bahan jawaban langsung bila penguji menanyakan alasan teknis-ekonomis di balik keputusan arsitektur ini:</p>
+
+<table>
+  <tr><th>Aspek</th><th>Membangun &amp; Melatih Model Sendiri</th><th>Mengakses via API (Pendekatan Nalarku.ai)</th></tr>
+  <tr><td>Biaya awal</td><td>Sangat tinggi (infrastruktur GPU, data, riset)</td><td>Tanpa biaya infrastruktur; bayar sesuai pemakaian token</td></tr>
+  <tr><td>Waktu pengembangan</td><td>Berbulan-bulan hingga bertahun-tahun</td><td>Dapat diintegrasikan dalam hitungan hari</td></tr>
+  <tr><td>Kebutuhan tim</td><td>Peneliti AI/ML, insinyur infrastruktur skala besar</td><td>Pengembang web/backend biasa</td></tr>
+  <tr><td>Kualitas model awal</td><td>Bergantung penuh pada data &amp; sumber daya tim</td><td>Memanfaatkan model kelas dunia yang sudah teruji</td></tr>
+  <tr><td>Fokus tim proyek</td><td>Riset model AI itu sendiri</td><td>Pengalaman belajar, fitur, dan personalisasi pengguna</td></tr>
+</table>
+
+<div class="callout">
+  <div class="callout-title">KALIMAT KUNCI UNTUK SIDANG</div>
+  "Kami memosisikan diri sebagai pengembang <em>aplikasi</em> AI, bukan pengembang <em>model</em> AI. Sama seperti pengembang aplikasi e-commerce tidak perlu membangun jaringan pembayaran sendiri dan cukup mengintegrasikan API payment gateway, kami mengintegrasikan API model bahasa untuk menghadirkan kecerdasan, lalu memfokuskan riset dan pengembangan kami pada arsitektur sistem, personalisasi, dan pengalaman belajar pengguna."
+</div>
+
+</section>
+
+<!-- ===================== BAB 4 ===================== -->
+<section>
+<div class="chapter-num">BAB 4</div>
+<h1 class="chapter">Arsitektur Sistem Nalarku.ai</h1>
+
+<h2>4.1 Diagram Arsitektur End-to-End</h2>
+<p>Diagram berikut menggambarkan seluruh komponen sistem Nalarku.ai dan bagaimana mereka saling terhubung, dari sisi pengguna hingga ke penyedia API AI eksternal:</p>
+
+<div class="figure">
+  <img src="assets/arsitektur.svg" alt="Diagram Arsitektur Nalarku.ai">
+  <div class="figure-caption">Gambar 4.1 — Arsitektur sistem Nalarku.ai menunjukkan posisi backend sebagai perantara (router) antara pengguna dan beberapa penyedia API AI.</div>
+</div>
+
+<h2>4.2 Strategi Multi-Provider (Pendekatan Campuran)</h2>
+<p>Nalarku.ai dirancang menggunakan <strong>lebih dari satu penyedia API AI secara bersamaan</strong>, bukan bergantung pada satu provider tunggal. Pendekatan ini, yang dalam industri sering disebut <em>multi-provider</em> atau <em>model routing</em>, dipilih dengan tiga pertimbangan utama:</p>
+
+<div class="step-box">
+  <span class="step-num">1</span><strong>Optimasi tugas spesifik.</strong> Tidak semua model AI unggul di semua hal. Provider tertentu mungkin lebih baik untuk percakapan tutor yang panjang dan kontekstual, sementara provider lain lebih efisien dan murah untuk tugas terstruktur seperti menghasilkan soal kuis dalam format JSON, atau menghitung kemiripan teks untuk plagiarism checker.
+</div>
+<div class="step-box">
+  <span class="step-num">2</span><strong>Efisiensi biaya.</strong> Model dengan kemampuan reasoning tinggi umumnya berbiaya lebih mahal per token. Dengan merutekan tugas-tugas sederhana (klasifikasi, validasi format) ke model yang lebih ringan dan murah, dan menyimpan model premium hanya untuk interaksi tutor yang membutuhkan kualitas tinggi, biaya operasional keseluruhan dapat ditekan signifikan.
+</div>
+<div class="step-box">
+  <span class="step-num">3</span><strong>Ketahanan sistem (resilience).</strong> Jika satu penyedia API mengalami gangguan layanan (downtime) atau pembatasan kuota (rate limit), sistem dapat secara otomatis mengalihkan permintaan ke penyedia cadangan (mekanisme <em>fallback</em>), sehingga layanan Nalarku.ai tetap dapat berjalan tanpa titik kegagalan tunggal (single point of failure).
+</div>
+
+<h2>4.3 Lapisan Persona "Nala AI"</h2>
+<p>Penting dipahami dan disampaikan dengan jelas saat presentasi: <strong>"Nala AI" bukanlah model AI yang berdiri sendiri</strong>, melainkan sebuah <em>lapisan logika</em> (persona layer) di sisi backend yang membungkus model-model AI eksternal tersebut. Lapisan ini bertanggung jawab untuk:</p>
+<ul>
+  <li>Menyisipkan system prompt yang mendefinisikan kepribadian, gaya bicara, dan batasan topik Nala AI.</li>
+  <li>Menyuntikkan konteks personal pengguna — progres belajar, riwayat kuis, level XP — ke dalam setiap permintaan, sehingga jawaban terasa personal.</li>
+  <li>Menentukan kapan AI perlu "memanggil" tools tertentu, misalnya mendeteksi niat pengguna untuk memulai sesi belajar terjadwal lalu memicu fungsi Pomodoro.</li>
+  <li>Memilih provider API mana yang paling sesuai untuk jenis permintaan yang sedang diproses (lihat 4.2).</li>
+</ul>
+
+</section>
+
+<!-- ===================== BAB 5 ===================== -->
+<section>
+<div class="chapter-num">BAB 5</div>
+<h1 class="chapter">Apa yang Terjadi di Balik Layar Saat Pengguna Bertanya</h1>
+
+<p>Bab ini menjabarkan secara rinci, langkah demi langkah, apa yang sebenarnya terjadi secara teknis sejak pengguna mengetik pertanyaan kepada Nala AI hingga jawaban muncul di layar. Pemahaman alur ini krusial untuk dapat menjawab pertanyaan teknis mendalam dari penguji.</p>
+
+<h2>5.1 Diagram Alur Permintaan (Sequence Flow)</h2>
+<div class="figure">
+  <img src="assets/alur-request.svg" alt="Diagram Sequence Flow Request AI">
+  <div class="figure-caption">Gambar 5.1 — Alur permintaan dari pengguna hingga jawaban Nala AI ditampilkan kembali, melibatkan empat aktor: Pengguna, Frontend, Backend Nalarku, dan Provider API AI.</div>
+</div>
+
+<h2>5.2 Penjelasan Tahap demi Tahap</h2>
+
+<div class="step-box"><span class="step-num">1</span><strong>Input pengguna.</strong> Pengguna mengetik pertanyaan atau perintah di antarmuka chat dan menekan tombol kirim. Pada tahap ini, teks masih murni berupa string di sisi klien (browser).</div>
+
+<div class="step-box"><span class="step-num">2</span><strong>Permintaan ke backend.</strong> Frontend mengirimkan permintaan HTTP POST ke endpoint backend milik Nalarku.ai sendiri (bukan langsung ke API AI eksternal) — ini penting karena API key penyedia AI tidak boleh terekspos di sisi klien.</div>
+
+<div class="step-box"><span class="step-num">3</span><strong>Penyusunan prompt.</strong> Backend mengambil pesan pengguna, menggabungkannya dengan system prompt persona Nala AI, riwayat percakapan terbaru dari database, dan data konteks belajar pengguna (misalnya: "pengguna sedang mempelajari materi stratifikasi sosial, baru menyelesaikan 60% kuis bab ini"). Seluruh elemen ini disusun menjadi satu paket permintaan terstruktur.</div>
+
+<div class="step-box"><span class="step-num">4</span><strong>Pemanggilan API eksternal.</strong> Backend mengirim paket tersebut ke endpoint API milik penyedia model AI yang dipilih oleh AI Router, disertai header otentikasi berisi API key rahasia yang hanya disimpan di server.</div>
+
+<div class="step-box"><span class="step-num">5</span><strong>Pemrosesan oleh model.</strong> Di sisi server penyedia API, model AI memecah teks masukan menjadi token, memprosesnya melalui jaringan neural berlapis (mekanisme <em>attention</em> yang menilai relevansi antar-token), lalu menghasilkan jawaban secara bertahap, token demi token, berdasarkan probabilitas statistik kata berikutnya yang paling sesuai dengan konteks.</div>
+
+<div class="step-box"><span class="step-num">6</span><strong>Respons dikembalikan.</strong> Hasil jawaban dikemas dalam format JSON dan dikirim kembali melalui HTTP ke backend Nalarku.ai, disertai metadata seperti jumlah token yang digunakan (relevan untuk penghitungan biaya).</div>
+
+<div class="step-box"><span class="step-num">7</span><strong>Pascaproses di backend.</strong> Backend menyimpan riwayat percakapan ke database, memperbarui poin pengalaman (XP) atau status pencapaian (badge) bila relevan, dan memformat ulang jawaban sesuai skema yang dipahami antarmuka frontend.</div>
+
+<div class="step-box"><span class="step-num">8</span><strong>Tampil ke pengguna.</strong> Frontend menerima respons dan menampilkannya, umumnya dengan efek mengetik bertahap (<em>streaming</em> atau simulasi ketik) agar interaksi terasa lebih alami dan langsung (real-time).</div>
+
+<div class="callout">
+  <div class="callout-title">KONSEP PENTING: API BERSIFAT STATELESS</div>
+  Model AI tidak benar-benar "mengingat" percakapan sebelumnya antar permintaan terpisah. Setiap kali pengguna mengirim pesan baru, backend harus mengirim ULANG seluruh riwayat percakapan yang relevan sebagai bagian dari permintaan baru. Itulah sebabnya pengelolaan context window dan strategi peringkasan riwayat menjadi bagian penting dari desain backend Nalarku.ai — bukan keterbatasan, melainkan karakteristik mendasar dari cara kerja API model bahasa.
+</div>
+
+</section>
+
+<!-- ===================== BAB 6 ===================== -->
+<section>
+<div class="chapter-num">BAB 6</div>
+<h1 class="chapter">Implementasi Teknis &amp; Contoh Kode</h1>
+
+<h2>6.1 Contoh Request API (Sisi Backend)</h2>
+<p>Berikut contoh implementasi pemanggilan API model AI dari backend Node.js, yang merepresentasikan Langkah 4 pada Bab 5. Catatan: nama provider, model, dan endpoint dalam contoh ini bersifat generik/ilustratif sehingga dapat disesuaikan dengan provider final yang dipilih tim.</p>
+
+<pre><span class="c1">// backend/services/aiRouter.js</span>
+<span class="k1">async function</span> kirimKeProviderAI(payload, providerConfig) {
+  <span class="k1">const</span> response = <span class="k1">await</span> fetch(providerConfig.endpoint, {
+    method: <span class="s1">"POST"</span>,
+    headers: {
+      <span class="s1">"Content-Type"</span>: <span class="s1">"application/json"</span>,
+      <span class="s1">"Authorization"</span>: <span class="s1">`Bearer ${process.env[providerConfig.apiKeyEnv]}`</span>
+    },
+    body: JSON.stringify({
+      model: providerConfig.model,
+      messages: payload.messages,
+      max_tokens: 800,
+      temperature: 0.7
+    })
+  });
+
+  <span class="k1">if</span> (!response.ok) {
+    <span class="k1">throw new</span> Error(<span class="s1">`Provider error: ${response.status}`</span>);
+  }
+
+  <span class="k1">return await</span> response.json();
+}</pre>
+
+<h2>6.2 Desain System Prompt untuk Nala AI</h2>
+<p>System prompt adalah bagian paling menentukan karakter Nala AI. Berikut struktur konseptual yang dapat dijelaskan ke penguji sebagai bagian dari "rancangan kepribadian AI" tanpa perlu membocorkan teks lengkap sistem produksi:</p>
+
+<pre><span class="c1">// backend/prompts/nalaPersona.js</span>
+<span class="k1">function</span> susunSystemPrompt(konteksUser) {
+  <span class="k1">return</span> <span class="s1">`
+Kamu adalah Nala AI, asisten belajar dalam platform Nalarku.ai.
+Gaya bicara: ramah, suportif, memotivasi, menggunakan bahasa
+yang mudah dipahami pelajar Indonesia.
+
+Konteks pengguna saat ini:
+- Nama: ${konteksUser.nama}
+- Materi yang sedang dipelajari: ${konteksUser.materiAktif}
+- Progres kuis: ${konteksUser.progresKuis}%
+- Level XP: ${konteksUser.levelXP}
+
+Batasan:
+- Jangan menjawab di luar topik akademik/edukasi.
+- Jika pengguna tampak frustrasi, berikan dorongan motivasi
+  sebelum melanjutkan materi.
+- Sarankan sesi Pomodoro jika pengguna sudah belajar lebih
+  dari 45 menit tanpa jeda.
+`</span>;
+}</pre>
+
+<div class="callout">
+  <div class="callout-title">CATATAN AKADEMIK</div>
+  Bagian inilah yang layak ditekankan sebagai <strong>kontribusi orisinal proyek</strong> dalam laporan/skripsi: bukan algoritma di dalam model AI (yang merupakan karya penyedia API), melainkan <strong>rancangan interaksi, desain prompt, manajemen konteks personal, dan logika integrasi tools</strong> yang membungkus model generik menjadi pengalaman belajar "Nala AI" yang khas dan personal.
+</div>
+
+<h2>6.3 Penanganan Kegagalan (Fallback)</h2>
+<p>Sebagai konsekuensi dari strategi multi-provider pada Bab 4, sistem perlu menangani skenario ketika satu provider gagal merespons:</p>
+
+<pre><span class="c1">// backend/services/aiRouter.js</span>
+<span class="k1">async function</span> prosesPertanyaan(payload) {
+  <span class="k1">const</span> urutanProvider = [<span class="s1">"providerUtama"</span>, <span class="s1">"providerCadangan"</span>];
+
+  <span class="k1">for</span> (<span class="k1">const</span> nama <span class="k1">of</span> urutanProvider) {
+    <span class="k1">try</span> {
+      <span class="k1">return await</span> kirimKeProviderAI(payload, konfigProvider[nama]);
+    } <span class="k1">catch</span> (err) {
+      console.warn(<span class="s1">`${nama} gagal, mencoba provider berikutnya...`</span>);
+      <span class="k1">continue</span>;
+    }
+  }
+
+  <span class="k1">throw new</span> Error(<span class="s1">"Semua provider AI tidak tersedia saat ini."</span>);
+}</pre>
+
+</section>
+
+<!-- ===================== BAB 7 ===================== -->
+<section>
+<div class="chapter-num">BAB 7</div>
+<h1 class="chapter">Pertimbangan Keamanan, Biaya, dan Skalabilitas</h1>
+
+<h2>7.1 Keamanan API Key</h2>
+<ul>
+  <li><strong>Tidak pernah disimpan di frontend.</strong> API key hanya hidup di environment variable server backend, tidak pernah dikirim ke browser dalam bentuk apa pun.</li>
+  <li><strong>Tidak pernah di-commit ke repository.</strong> Disimpan dalam file <code>.env</code> yang dimasukkan ke <code>.gitignore</code>, dengan nilai aktual hanya dikonfigurasi langsung di platform hosting (mis. Vercel Environment Variables).</li>
+  <li><strong>Proxy pattern.</strong> Seluruh permintaan ke API AI selalu melalui backend Nalarku.ai sebagai perantara — frontend tidak pernah memanggil API provider secara langsung.</li>
+</ul>
+
+<h2>7.2 Estimasi &amp; Kontrol Biaya</h2>
+<p>Karena penyedia API umumnya menagih berdasarkan jumlah token, beberapa strategi kontrol biaya yang relevan untuk diterapkan dan disebutkan dalam presentasi:</p>
+<table>
+  <tr><th>Strategi</th><th>Tujuan</th></tr>
+  <tr><td>Membatasi <code>max_tokens</code> per respons</td><td>Mencegah jawaban yang tidak perlu panjang menghabiskan kuota</td></tr>
+  <tr><td>Meringkas riwayat percakapan lama</td><td>Mengurangi token input yang dikirim ulang setiap permintaan</td></tr>
+  <tr><td>Merutekan tugas sederhana ke model lebih murah</td><td>Hanya memakai model premium saat dibutuhkan kualitas tinggi</td></tr>
+  <tr><td>Caching jawaban untuk pertanyaan umum</td><td>Menghindari pemanggilan API berulang untuk pertanyaan identik</td></tr>
+  <tr><td>Rate limiting per pengguna</td><td>Mencegah penyalahgunaan yang membengkakkan biaya operasional</td></tr>
+</table>
+
+<h2>7.3 Skalabilitas</h2>
+<p>Karena beban komputasi berat (menjalankan model AI) sepenuhnya berada di sisi penyedia API, bukan di server Nalarku.ai sendiri, beban utama yang perlu diskalakan oleh tim hanyalah lapisan backend (routing, autentikasi, database) — yang jauh lebih ringan dibanding mengoperasikan infrastruktur model AI. Ini merupakan keuntungan arsitektural tambahan dari pendekatan berbasis API yang dapat disampaikan sebagai justifikasi desain sistem.</p>
+
+</section>
+
+<!-- ===================== BAB 8 ===================== -->
+<section>
+<div class="chapter-num">BAB 8</div>
+<h1 class="chapter">Skrip Presentasi Sidang</h1>
+
+<p>Bagian ini berisi naskah presentasi yang dapat dibawakan langsung, disusun agar mengalir secara natural namun tetap menunjukkan penguasaan teknis. Skrip dibagi per segmen dengan estimasi durasi, dan dirancang untuk dibawakan dengan bahasa sendiri — bukan dihafalkan kata per kata.</p>
+
+<h2>8.1 Segmen Pembukaan</h2>
+<div class="script-box">
+  <div class="speaker">PEMBICARA &middot; ~1-2 MENIT</div>
+  <p>"Selamat pagi/siang, Bapak/Ibu dosen penguji. Perkenalkan, kami akan mempresentasikan Nalarku.ai — sebuah platform belajar berbasis web yang dilengkapi asisten kecerdasan buatan personal bernama Nala AI.</p>
+  <p>Yang membedakan Nalarku.ai dari platform belajar pada umumnya adalah: Nala AI tidak sekadar menjawab pertanyaan secara generik, tetapi dapat memahami konteks belajar setiap pengguna secara personal, serta dapat mengakses fitur-fitur lain dalam sistem — seperti memicu sesi Pomodoro, menghasilkan kuis adaptif, dan memeriksa orisinalitas tulisan pengguna.</p>
+  <p>Dalam presentasi ini, kami akan menjelaskan bagaimana kecerdasan buatan ini bekerja secara teknis, arsitektur sistem yang kami bangun, dan keputusan-keputusan desain di baliknya."</p>
+</div>
+
+<h2>8.2 Segmen Penjelasan Konsep API</h2>
+<div class="script-box">
+  <div class="speaker">PEMBICARA &middot; ~3-4 MENIT</div>
+  <p>"Sebelum masuk ke arsitektur, kami ingin menjelaskan satu fondasi penting: bagaimana Nalarku.ai mendapatkan kecerdasan AI-nya.</p>
+  <p>Membangun model bahasa besar dari nol — melatih AI seperti yang digunakan ChatGPT atau Claude — membutuhkan ribuan unit GPU server, dataset berskala internet, dan biaya riset yang jauh di luar skala proyek mahasiswa, bahkan startup tahap awal sekalipun. Karena itu, pendekatan yang kami ambil — dan ini adalah pendekatan standar industri, digunakan oleh hampir semua aplikasi berbasis AI saat ini — adalah mengakses kecerdasan tersebut melalui <strong>Application Programming Interface, atau API</strong>.</p>
+  <p>Secara sederhana, API adalah perantara yang memungkinkan sistem kami 'bertanya' kepada model AI milik penyedia pihak ketiga melalui internet, lalu menerima jawabannya kembali, tanpa kami perlu tahu — atau perlu membangun — cara kerja model itu sendiri di baliknya. Kami mengirim permintaan terstruktur berisi pertanyaan pengguna, dan menerima balasan terstruktur berisi jawaban AI, dalam hitungan detik.</p>
+  <p>Penting kami tegaskan: kecerdasan inti — model bahasanya sendiri — bukan buatan kami. Yang menjadi kontribusi dan orisinalitas kami adalah bagaimana kami merancang sistem di sekitarnya: bagaimana AI tersebut diberi 'kepribadian' sebagai Nala AI, bagaimana ia dipersonalisasi untuk tiap pengguna, dan bagaimana ia diintegrasikan dengan fitur-fitur belajar lainnya."</p>
+</div>
+
+<h2>8.3 Segmen Penjelasan Arsitektur Sistem</h2>
+<div class="script-box">
+  <div class="speaker">PEMBICARA &middot; ~4-5 MENIT, SAMBIL MENAMPILKAN DIAGRAM BAB 4 &amp; 5</div>
+  <p>"Berikut adalah arsitektur sistem kami secara keseluruhan. [Tunjuk diagram] Saat pengguna mengetik pertanyaan di antarmuka Nalarku.ai, permintaan tersebut tidak langsung dikirim ke penyedia AI, melainkan terlebih dahulu masuk ke backend kami sendiri.</p>
+  <p>Backend inilah yang menjadi 'otak orkestrasi' sistem kami. Ia melakukan tiga hal penting: pertama, menyusun konteks — menggabungkan pertanyaan pengguna dengan riwayat percakapan, progres belajar, dan instruksi kepribadian Nala AI. Kedua, memilih penyedia API mana yang paling sesuai untuk jenis permintaan tersebut — kami menyebutnya AI Router — karena kami menggunakan <strong>lebih dari satu penyedia API secara bersamaan</strong>, bukan hanya satu.</p>
+  <p>Mengapa lebih dari satu? Karena setiap penyedia memiliki kekuatan, kecepatan, dan struktur biaya berbeda. Untuk percakapan tutor yang membutuhkan pemahaman kontekstual mendalam, kami merutekan ke model yang lebih kuat. Untuk tugas terstruktur seperti menghasilkan soal kuis, kami dapat menggunakan model yang lebih ringan dan efisien biaya. Pendekatan campuran ini juga memberi ketahanan sistem — jika satu penyedia mengalami gangguan, sistem secara otomatis beralih ke penyedia cadangan.</p>
+  <p>Setelah jawaban diterima dari API, backend melakukan pascaproses: menyimpan riwayat, memperbarui poin pengalaman pengguna, lalu mengirimkan hasil akhir ke antarmuka pengguna."</p>
+</div>
+
+<h2>8.4 Segmen Penjelasan "Apa yang Terjadi di Balik Layar"</h2>
+<div class="script-box">
+  <div class="speaker">PEMBICARA &middot; ~2-3 MENIT, OPSIONAL JIKA WAKTU TERBATAS</div>
+  <p>"Untuk memberi gambaran lebih konkret, izinkan kami menjelaskan apa yang terjadi dalam hitungan detik setelah pengguna menekan tombol kirim. [Tunjuk diagram sequence flow] Pesan pengguna dikirim ke backend kami, backend menyusun paket permintaan lengkap dengan konteks personal pengguna, lalu mengirimkannya ke API model AI disertai kunci otentikasi yang tersimpan aman di server — tidak pernah terekspos ke pengguna.</p>
+  <p>Di sisi penyedia API, model memproses teks tersebut menjadi unit-unit kecil yang disebut token, lalu menghasilkan jawaban secara bertahap berdasarkan pemahaman statistiknya terhadap bahasa. Jawaban ini kemudian kembali ke backend kami, disimpan ke riwayat, dan ditampilkan ke pengguna — seluruh proses ini umumnya berlangsung dalam satu hingga lima detik."</p>
+</div>
+
+<h2>8.5 Antisipasi Pertanyaan Dosen Penguji</h2>
+<p>Bagian ini krusial — penguji kemungkinan besar akan menguji pemahaman mendalam, bukan sekadar hafalan presentasi. Berikut pertanyaan yang paling mungkin muncul beserta kerangka jawaban:</p>
+
+<div class="qa-box">
+  <div class="q">Q: "Jadi AI-nya bukan buatan kalian sendiri? Lalu apa kontribusi ilmiah/orisinal proyek ini?"</div>
+  <div class="a">A: Tegaskan bahwa hampir seluruh aplikasi berbasis AI di industri — termasuk produk-produk besar — menggunakan pendekatan serupa: memanfaatkan API model fondasi, lalu membangun nilai tambah di atasnya. Kontribusi orisinal proyek terletak pada: (1) arsitektur sistem multi-provider dan strategi routing, (2) desain persona dan system prompt Nala AI, (3) sistem personalisasi berbasis konteks belajar pengguna, (4) integrasi AI dengan tools pembelajaran (gamifikasi, Pomodoro, plagiarism checker), dan (5) pengalaman pengguna end-to-end yang dirancang khusus untuk konteks pendidikan Indonesia.</div>
+</div>
+
+<div class="qa-box">
+  <div class="q">Q: "Bagaimana jika API yang kalian gunakan tiba-tiba menaikkan harga atau berhenti beroperasi?"</div>
+  <div class="a">A: Jelaskan strategi multi-provider sebagai mitigasi risiko ini — arsitektur backend dirancang agar provider dapat ditukar atau ditambah tanpa mengubah logika aplikasi inti, karena lapisan persona dan logika bisnis dipisahkan dari pemanggilan API spesifik (prinsip abstraksi/decoupling).</div>
+</div>
+
+<div class="qa-box">
+  <div class="q">Q: "Bagaimana keamanan data pengguna, mengingat data dikirim ke pihak ketiga?"</div>
+  <div class="a">A: Jelaskan bahwa hanya data yang relevan dengan konteks pertanyaan yang dikirim (bukan seluruh database), API key dan kredensial tidak pernah terekspos, komunikasi menggunakan HTTPS terenkripsi, dan penyedia API yang dipilih tunduk pada kebijakan privasi serta perjanjian pemrosesan data standar industri. Jika relevan, sebutkan bahwa kebijakan retensi/penggunaan data dari tiap provider perlu ditinjau dan dicantumkan dalam kebijakan privasi aplikasi.</div>
+</div>
+
+<div class="qa-box">
+  <div class="q">Q: "Apa bedanya Nala AI dengan ChatGPT biasa yang dibuka di browser?"</div>
+  <div class="a">A: Tekankan personalisasi dan integrasi: Nala AI mengetahui progres belajar spesifik pengguna, riwayat kuis, dan dapat memicu aksi nyata dalam aplikasi (memulai Pomodoro, mencatat XP), sesuatu yang tidak dimiliki chatbot generik berdiri sendiri yang diakses terpisah dari platform belajar.</div>
+</div>
+
+<div class="qa-box">
+  <div class="q">Q: "Berapa biaya operasional untuk menjalankan fitur AI ini?"</div>
+  <div class="a">A: Jelaskan model biaya berbasis token (lihat Bab 7), dan strategi kontrol biaya yang diterapkan: pembatasan panjang respons, peringkasan riwayat, routing tugas sederhana ke model lebih murah, dan rate limiting. Jika sudah punya angka estimasi nyata dari testing, sampaikan sebagai data pendukung.</div>
+</div>
+
+<div class="qa-box">
+  <div class="q">Q: "Apakah AI ini bisa memberikan jawaban yang salah? Bagaimana mengatasinya?"</div>
+  <div class="a">A: Akui secara jujur bahwa model bahasa dapat menghasilkan informasi yang tidak akurat (dikenal sebagai fenomena <em>hallucination</em> dalam literatur AI), dan jelaskan langkah mitigasi yang relevan: system prompt yang membatasi topik pada materi akademik, kemungkinan validasi jawaban terhadap sumber materi resmi platform, serta umpan balik pengguna untuk perbaikan berkelanjutan.</div>
+</div>
+
+<h2>8.6 Segmen Penutup</h2>
+<div class="script-box">
+  <div class="speaker">PEMBICARA &middot; ~1 MENIT</div>
+  <p>"Sebagai rangkuman, Nalarku.ai membangun pengalaman belajar personal dengan memanfaatkan API model AI sebagai fondasi kecerdasan, sementara fokus pengembangan kami curahkan pada arsitektur sistem, personalisasi, dan integrasi fitur yang relevan dengan kebutuhan belajar pengguna. Kami percaya pendekatan ini merupakan strategi yang realistis, dapat dipertanggungjawabkan secara teknis, dan selaras dengan praktik pengembangan aplikasi AI di industri saat ini.</p>
+  <p>Kami terbuka untuk pertanyaan dan masukan dari Bapak/Ibu dosen penguji. Terima kasih."</p>
+</div>
+
+</section>
+
+<!-- ===================== BAB 9 ===================== -->
+<section>
+<div class="chapter-num">BAB 9</div>
+<h1 class="chapter">Kesimpulan</h1>
+
+<p>Nalarku.ai dibangun di atas prinsip arsitektur yang jelas: memanfaatkan Application Programming Interface (API) sebagai jembatan untuk mengakses kecerdasan model bahasa besar dari penyedia pihak ketiga, alih-alih membangun dan melatih model AI sendiri — sebuah pendekatan yang realistis secara sumber daya dan selaras dengan praktik umum industri perangkat lunak berbasis AI.</p>
+
+<p>Nilai tambah dan orisinalitas proyek terletak pada lapisan yang dibangun di atas fondasi tersebut: arsitektur backend dengan strategi multi-provider untuk efisiensi biaya dan ketahanan sistem, desain persona "Nala AI" melalui rekayasa system prompt, mekanisme personalisasi berbasis konteks belajar pengguna, serta integrasi AI dengan ekosistem fitur pembelajaran seperti gamifikasi, Pomodoro timer, dan plagiarism checker.</p>
+
+<p>Pemahaman menyeluruh terhadap cara kerja API — mulai dari konsep dasar request-response, anatomi token dan context window, hingga implikasi keamanan dan biaya — menjadi bekal penting bagi tim untuk mempertanggungjawabkan keputusan desain sistem secara teknis maupun akademik di hadapan dosen penguji.</p>
+
+</section>
+
+<!-- ===================== BAB 10 ===================== -->
+<section>
+<div class="chapter-num">BAB 10</div>
+<h1 class="chapter">Referensi</h1>
+
+<p>Konsep-konsep umum dalam dokumen ini merujuk pada pemahaman standar industri mengenai web API, protokol HTTP/REST, dan prinsip kerja model bahasa besar (LLM) yang berlaku lintas penyedia. Untuk kebutuhan sitasi akademik formal, tim disarankan melengkapi referensi berikut sesuai gaya sitasi yang diwajibkan institusi (APA/IEEE):</p>
+<ul>
+  <li>Dokumentasi resmi REST API — prinsip arsitektur Representational State Transfer (Fielding, R., 2000, disertasi UC Irvine — sumber akademik standar untuk konsep REST).</li>
+  <li>Dokumentasi resmi penyedia API model AI yang digunakan tim (cantumkan tautan dokumentasi provider final yang dipilih, mis. platform developer documentation masing-masing).</li>
+  <li>Materi pengantar konsep token dan context window dari dokumentasi resmi provider yang digunakan.</li>
+  <li>Sumber akademik mengenai prinsip arsitektur perangkat lunak: pola desain proxy, abstraksi layanan eksternal, dan strategi fallback/resilience dalam sistem terdistribusi.</li>
+</ul>
+
+<div class="callout">
+  <div class="callout-title">CATATAN UNTUK TIM</div>
+  Karena provider API final belum ditentukan secara pasti (disebut sebagai pendekatan "campuran"), bagian referensi ini sebaiknya diperbarui dengan tautan dokumentasi resmi setiap provider yang benar-benar dipakai sebelum dokumen ini diserahkan secara formal, agar sitasi dapat diverifikasi oleh penguji.
+</div>
+
+<div class="footer-note">
+  Nalarku.ai &middot; Dokumen ini bersifat internal dan disusun untuk keperluan presentasi akademik
+</div>
+
+</section>
+
+</div>
+</body></html>
